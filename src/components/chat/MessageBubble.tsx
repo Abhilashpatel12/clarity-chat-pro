@@ -11,26 +11,29 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   const [displayedContent, setDisplayedContent] = useState('');
   const [isTyping, setIsTyping] = useState(false);
 
-  // Typing animation for system messages
+  // ChatGPT-style typing animation for system messages
   useEffect(() => {
     if (message.role === 'system' && message.typing) {
       setIsTyping(true);
       setDisplayedContent('');
       
-      let index = 0;
-      const typingSpeed = 30; // milliseconds per character
+      // Split into words for more natural token-by-token animation
+      const words = message.content.split(' ');
+      let wordIndex = 0;
+      const typingSpeed = 50; // milliseconds per word (more ChatGPT-like)
       
-      const typeText = () => {
-        if (index < message.content.length) {
-          setDisplayedContent(message.content.slice(0, index + 1));
-          index++;
-          setTimeout(typeText, typingSpeed);
+      const typeWords = () => {
+        if (wordIndex < words.length) {
+          const displayText = words.slice(0, wordIndex + 1).join(' ');
+          setDisplayedContent(displayText);
+          wordIndex++;
+          setTimeout(typeWords, typingSpeed);
         } else {
           setIsTyping(false);
         }
       };
       
-      setTimeout(typeText, 100);
+      setTimeout(typeWords, 150);
     } else {
       setDisplayedContent(message.content);
     }
@@ -67,10 +70,10 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
         shadow-sm
       `}>
         {/* Message Content */}
-        <div className="whitespace-pre-wrap">
+        <div className="whitespace-pre-wrap font-inter text-base leading-relaxed">
           {displayedContent}
           {isTyping && (
-            <span className="inline-block w-2 h-5 bg-text-primary ml-1 animate-pulse" />
+            <span className="inline-block w-0.5 h-5 bg-text-primary ml-0.5 animate-pulse" />
           )}
         </div>
 
