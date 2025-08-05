@@ -65,7 +65,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
         max-w-[80%] p-4 rounded-lg
         ${message.role === 'user' 
           ? 'bg-user-bubble text-text-primary' 
-          : 'bg-system-bubble text-text-primary'
+          : 'text-text-primary'
         }
       `}>
         {/* Message Content */}
