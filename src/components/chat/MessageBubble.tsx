@@ -67,7 +67,6 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
           ? 'bg-user-bubble text-text-primary' 
           : 'bg-system-bubble text-text-primary'
         }
-        shadow-sm
       `}>
         {/* Message Content */}
         <div className="whitespace-pre-wrap font-inter text-base leading-relaxed">
