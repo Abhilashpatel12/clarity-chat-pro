@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, FileText, MessageSquare, FileEdit, Briefcase, User, Settings, LogOut, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { NavLink } from 'react-router-dom';
 
 export interface ChatHistoryItem {
   id: string;
@@ -99,21 +100,37 @@ const Sidebar: React.FC<SidebarProps> = ({
           </h3>
           <div className="space-y-1">
             {[
-              { id: 'resume', label: 'Resume Enhancer', icon: FileText },
-              { id: 'interview', label: 'Interview Coach', icon: MessageSquare },
+               { id: 'resume', label: 'Resume Enhancer', icon: FileText },
+               { id: 'interview', label: 'Interview Coach', icon: MessageSquare, route: '/interview-coach' },
               { id: 'cover-letter', label: 'Cover Letter Writer', icon: FileEdit },
               { id: 'portfolio', label: 'Portfolio Builder', icon: Briefcase },
-            ].map((tool) => (
-              <Button
-                key={tool.id}
-                variant="ghost"
-                onClick={() => onSelectTool(tool.id)}
-                className="w-full justify-start text-text-primary hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-              >
-                <tool.icon className="h-4 w-4 mr-3" />
-                {tool.label}
-              </Button>
-            ))}
+             ].map((tool) => (
+               tool.route ? (
+                 <NavLink
+                   key={tool.id}
+                   to={tool.route}
+                   className="block w-full"
+                 >
+                   <Button
+                     variant="ghost"
+                     className="w-full justify-start text-text-primary hover:bg-accent hover:text-accent-foreground transition-all duration-200"
+                   >
+                     <tool.icon className="h-4 w-4 mr-3" />
+                     {tool.label}
+                   </Button>
+                 </NavLink>
+               ) : (
+                 <Button
+                   key={tool.id}
+                   variant="ghost"
+                   onClick={() => onSelectTool(tool.id)}
+                   className="w-full justify-start text-text-primary hover:bg-accent hover:text-accent-foreground transition-all duration-200"
+                 >
+                   <tool.icon className="h-4 w-4 mr-3" />
+                   {tool.label}
+                 </Button>
+               )
+             ))}
           </div>
         </div>
 
