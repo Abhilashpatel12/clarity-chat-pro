@@ -18,12 +18,26 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'inter': ['Inter', 'sans-serif'],
+				'sans': ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				
+				/* Custom Matrixx Colors */
+				'sidebar-bg': 'hsl(var(--sidebar-bg))',
+				'chat-bg': 'hsl(var(--chat-bg))',
+				'user-bubble': 'hsl(var(--user-bubble))',
+				'system-bubble': 'hsl(var(--system-bubble))',
+				'text-primary': 'hsl(var(--text-primary))',
+				'text-muted': 'hsl(var(--text-muted))',
+				'text-inverse': 'hsl(var(--text-inverse))',
+				
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -51,17 +65,30 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
-				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			transitionProperty: {
+				'smooth': 'var(--transition-smooth)',
+				'bounce': 'var(--transition-bounce)',
+			},
+			animation: {
+				'type-writer': 'typewriter 0.5s steps(40) forwards',
+				'fade-in': 'fadeIn 0.3s ease-in-out',
+				'slide-up': 'slideUp 0.2s ease-out',
+			},
+			keyframes: {
+				typewriter: {
+					'0%': { width: '0' },
+					'100%': { width: '100%' },
+				},
+				fadeIn: {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
+				slideUp: {
+					'0%': { transform: 'translateY(100%)' },
+					'100%': { transform: 'translateY(0)' },
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
